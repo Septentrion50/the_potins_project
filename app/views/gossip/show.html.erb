@@ -1,0 +1,18 @@
+<% g = Gossip.find(params[:id])%>
+<div class="container text-center">
+  <div class="container-fluid mt-5">
+    <h1 class="display-3 mb-3 text-start"><%=g.title%></h1>
+    <h5 class="text-start mb-2">Par <%=link_to "#{g.user.first_name} #{g.user.last_name}", { controller: 'user', action: 'show', id: g.user.id }, class: "text-decoration-none"%></h5>
+    <%date = g.created_at%>
+    <p class="text-start text-muted mb-4">Publié le <%=date.strftime('%d-%m-%Y')%></p>
+    <h3 class="h3 mb-5"><%=g.content%></h3>
+    <figure class="text-start">
+      <blockquote class="blockquote">
+        <p>Ҫa ne veut rien dire, mais dans le contexte, je trouvais ça approprié...</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Roi Loth dans <cite title="Kaamelott">Kaamelott</cite>
+      </figcaption>
+    </figure>
+  </div>
+</div>

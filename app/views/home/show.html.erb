@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="container-fluid mt-5 mb-5">
+    <h1>Tous les potins</h1>
+    <p class="text-muted">Ici se trouvent tous les potins du site</p>
+  </div>
+
+  <div class="container">
+    <%Gossip.all.each do |g|%>
+      <div class="card mb-2">
+        <div class="card-body">
+          <h3 class="card-title"><%=g.title%></h3>
+          <h5 class="card-text text-muted"><%=g.user.first_name%> <%=g.user.last_name%></h5>
+          <button type="button" class="btn btn-primary">
+            <%=link_to 'Voir', { controller: 'gossip', action: 'show', id: g.id }, class: "text-light", style: "text-decoration: none;"%>
+          </button>
+        </div>
+      </div>
+    <%end%>
+</div>
+</div>
