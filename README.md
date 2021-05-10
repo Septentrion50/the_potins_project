@@ -12,7 +12,8 @@ et des pages statiques existent pour afficher les views de base.
 |Opérer les migrations| `rails db:migrate`|
 |Remplir la base de données| `rails db:seed`|
 |Lancer le serveur| `rails server`|
-|Une fois le serveur lancé| [CLIQUEZ-ICI](localhost:3000/)|
+
+Une fois le serveur lancé, [CLIQUEZ-ICI](localhost:3000/)
 
 **Astuce :** Pour accéder aux pages `welcome/<first-name>`, regardez les prénoms des
 utilisateurs sur la page d'accueil, et copiez-collez les dans l'url suivant :
