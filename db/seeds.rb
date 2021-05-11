@@ -8,6 +8,8 @@
 
 require 'faker'
 
+Faker::Config.locale = 'fr'
+
 User.destroy_all
 City.destroy_all
 Gossip.destroy_all
@@ -18,7 +20,7 @@ PrivateMessage.destroy_all
 
 10.times do
   Tag.create!(
-    title: Faker::Lorem.sentence(word_count: 1)
+    title: Faker::Lorem.paragraph_by_chars(number: rand(3..14))
   )
 
   City.create!(
@@ -27,38 +29,46 @@ PrivateMessage.destroy_all
   )
 
   User.create!(
-    first_name: Faker::Name.last_name,
+    first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    describtion: Faker::Lorem.sentence(word_count: 10),
+    description: Faker::Lorem.paragraph_by_chars(number: rand(100..180)),
     age: Faker::Number.number(digits: 2),
     city: City.all.sample
   )
 end
 
+User.create(
+  first_name: 'Anonymous',
+  last_name: 'Von Rien du Tout',
+  description: Faker::Lorem.paragraph_by_chars(number: rand(100..180)),
+  age: 0,
+  city: City.first
+)
+
 Gossip.create!(
-  title: Faker::Lorem.sentence(word_count: 1),
-  content: Faker::Lorem.sentence(word_count: 10),
+  title: Faker::Lorem.paragraph_by_chars(number: rand(3..14)),
+  content: Faker::Lorem.paragraph_by_chars(number: rand(10..200)),
   user: User.all.sample,
   tag: Tag.all.sample
 )
 
 Comment.create!(
-  content: Faker::Lorem.sentence(word_count: 10),
+  content: Faker::Lorem.paragraph_by_chars(number: rand(10..40)),
   comment_type: Gossip.all.sample,
   user: User.all.sample
 )
 
 19.times do
   Gossip.create!(
-    title: Faker::Lorem.sentence(word_count: 1),
-    content: Faker::Lorem.sentence(word_count: 10),
+    title: Faker::Lorem.paragraph_by_chars(number: rand(3..14)),
+    content: Faker::Lorem.paragraph_by_chars(number: rand(10..200)),
     user: User.all.sample,
     tag: Tag.all.sample
   )
 
   choice = [Gossip.all.sample, Comment.all.sample]
   Comment.create!(
-    content: Faker::Lorem.sentence(word_count: 10),
+    content: Faker::Lorem.paragraph_by_chars(number: rand(10..40)),
     comment_type: choice.sample,
     user: User.all.sample
   )
@@ -76,7 +86,7 @@ end
 
 30.times do
   PrivateMessage.create!(
-    content: Faker::Lorem.sentence(word_count: 10),
+    content: Faker::Lorem.paragraph_by_chars(number: rand(10..200)),
     sender: User.all.sample,
     recipient: User.all.sample
   )

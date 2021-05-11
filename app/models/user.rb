@@ -1,4 +1,15 @@
 class User < ApplicationRecord
+
+  validates :first_name,
+            presence: true
+
+  validates :last_name,
+            presence: true
+
+  validates :description,
+            presence: true,
+            length: { minimum: 20, maximum: 200 }
+
   has_many :gossips
   has_many :comments, as: :comment_type
   has_many :likes

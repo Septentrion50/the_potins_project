@@ -1,7 +1,6 @@
-<%u = User.find_by(first_name: params[:name])%>
 <div class="container">
   <div class="container-fluid mt-5">
-    <h1>Bienvenue <%=u.first_name%> !</h1>
+    <h1>Bienvenue <%=params[:id].capitalize%> !</h1>
     <p>Tu as trouvé ta page secrète ! Félicitations :)</p>
   </div>
 </div>

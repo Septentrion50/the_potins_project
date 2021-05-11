@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  get 'welcome/:name', to: 'welcome#show'
-  get 'user/show', to: 'user#show'
-  get 'gossip/:id', to: 'gossip#show'
-  root 'home#show'
-  get 'contact/show', to: 'contact#show'
-  get 'team/show', to: 'team#show'
+  resources :welcome, only: [:show]
+  resources :user, only: [:show]
+
+  resources :gossip do
+    resources :comments do
+      resources :comments
+    end
+  end
+
+  resources :contact, only: [:index]
+  resources :team, only: [:index]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
