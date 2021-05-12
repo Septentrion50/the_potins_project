@@ -22,7 +22,10 @@
     <%Gossip.all.each do |g|%>
       <div class="card mb-2">
         <div class="card-body">
-          <h3 class="card-title"><%=g.title%></h3>
+          <div class="container text-end">
+            <h3 class="card-title text-start"><%=g.title%></h3>
+            <span class="badge bg-primary rounded-pill"><%=g.comments.size%></span>
+          </div>
           <h5 class="card-text text-muted"><%=g.user.first_name%> <%=g.user.last_name%></h5>
           <button type="button" class="btn btn-primary">
             <%=link_to 'Voir', { controller: 'gossips', action: 'show', id: g.id }, class: "text-light", style: "text-decoration: none;"%>
