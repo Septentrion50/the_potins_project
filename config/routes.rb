@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :user, only: [:show]
   resources :city, only: [:show]
 
-  resources :gossip do
-    resources :comments do
-      resources :comments
+  resources :gossips do
+    resources :comments, except: [:index, :new] do
+      resources :comments, except: [:index, :new]
     end
   end
 

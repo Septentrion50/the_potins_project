@@ -1,17 +1,16 @@
-<%c = City.find(params[:id])%>
 <div class="container mt-5">
   <div class="container-fluid">
-    <h1 class="mb-2"><%=c.name%></h1>
-    <h4 class="text-muted mb-5">Tous les potins de <%=c.name%></h4>
+    <h1 class="mb-2"><%=@city.name%></h1>
+    <h4 class="text-muted mb-5">Tous les potins de <%=@city.name%></h4>
     <div class="container">
-      <%c.users.each do |u|%>
+      <%@city.users.each do |u|%>
         <%u.gossips.each do |g|%>
           <div class="card mb-2">
             <div class="card-body">
               <h3 class="card-title"><%=g.title%></h3>
               <h5 class="card-text text-muted"><%=g.user.first_name%> <%=g.user.last_name%></h5>
               <button type="button" class="btn btn-primary">
-                <%=link_to 'Voir', { controller: 'gossip', action: 'show', id: g.id }, class: "text-light", style: "text-decoration: none;"%>
+                <%=link_to 'Voir', { controller: 'gossips', action: 'show', id: g.id }, class: "text-light", style: "text-decoration: none;"%>
               </button>
             </div>
           </div>

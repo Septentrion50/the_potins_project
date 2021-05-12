@@ -1,2 +1,19 @@
-<h1>Comments#edit</h1>
-<p>Find me in app/views/comments/edit.html.erb</p>
+<div class="container">
+  <div class="container-fluid">
+    <h1 class="mt-5">Modifier le commentaire</h1>
+    <div class="container">
+      <%= form_tag(gossip_comment_path(@id, @comment.id), method: 'patch') do %>
+        <%=text_field_tag 'gossip_id', :gossip_id, type: 'hidden', class: 'form-control' %>
+        <div class="form-group">
+          <%=text_area_tag 'content', @comment.content, required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+           <%=submit_tag 'Modifier', class: 'btn btn-primary' %>
+         </div>
+      <%end%>
+      <div class="container text-end">
+        <%= button_to "Supprimer", gossip_comment_path(@id, @comment.id), :method => :delete, class: "btn btn-danger", data: { confirm: "êtes-vous sûr?" } %>
+      </div>
+    </div>
+  </div>
+</div>
