@@ -1,12 +1,21 @@
-<% g = Gossip.find(params[:id])%>
-<div class="container text-center">
+<div class="container">
   <div class="container-fluid mt-5">
-    <h1 class="display-3 mb-3 text-start"><%=g.title%></h1>
-    <h5 class="text-start mb-2">Par <%=link_to "#{g.user.first_name} #{g.user.last_name}", { controller: 'user', action: 'show', id: g.user.id }, class: "text-decoration-none"%></h5>
-    <%date = g.created_at%>
-    <p class="text-start text-muted mb-4">Publié le <%=date.strftime('%d-%m-%Y')%></p>
-    <h3 class="h3 mb-5"><%=g.content%></h3>
-    <figure class="text-start">
+
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-danger">
+        <%= msg %>
+      </div>
+    <% end %>
+
+    <h1 class="display-3 mb-3"><%=@gossip.title%></h1>
+    <h5 class="mb-2">Par <%=link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}", { controller: 'user', action: 'show', id: @gossip.user.id }, class: "text-decoration-none"%></h5>
+    <p>
+      de <%=link_to "#{@gossip.user.city.name}", { controller: 'city', action: 'show', id: @gossip.user.city.id }, class: "text-decoration-none"%>
+    </p>
+    <%date = @gossip.created_at%>
+    <p class="text-muted mb-4">Publié le <%=date.strftime('%d-%m-%Y')%></p>
+    <h3 class="h3 text-center mb-5"><%=@gossip.content%></h3>
+    <figure> 
       <blockquote class="blockquote">
         <p>Ҫa ne veut rien dire, mais dans le contexte, je trouvais ça approprié...</p>
       </blockquote>
@@ -14,5 +23,9 @@
         Roi Loth dans <cite title="Kaamelott">Kaamelott</cite>
       </figcaption>
     </figure>
+    <div class="d-flex">
+      <button class="btn btn-warning" style="margin-right: 1rem;"><%=link_to 'Modifier', { controller: 'gossip', action: 'edit', id: @gossip.id }, class: 'text-dark text-decoration-none'%></button>
+      <%= link_to "Supprimer", gossip_path(@gossip.id), :method => :delete, class: "btn btn-danger", data: { method: 'DELETE', confirm: "êtes-vous sûr?" } %>
+    </div>
   </div>
 </div>

@@ -2,7 +2,8 @@
 <div class="container">
   <div class="container-fluid mt-5">
     <h1><%=u.first_name%> <%=u.last_name%></h1>
-    <h3 class="text-muted"><%=u.age%> ans, de <%=u.city.name%></h3>
+    <h3 class="text-muted"><%=u.age%> ans, de <%=link_to "#{u.city.name}", { controller: 'city', action: 'show', id: u.city.id }, class: "text-decoration-none"%></h3>
+    <h5 class="text-muted mb-5"><%=u.email%></h5>
     <p><%=u.description%></p>
   </div>
 </div>
