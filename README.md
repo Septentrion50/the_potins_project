@@ -29,12 +29,21 @@ Vous pouvez aussi mettre n'importe quel prénom dans la barre d'url.
 
 ## Changelog
 
+### 13-05-2021 - V.0.4
+
+* Mise en place des sessions utilisateurs, vous pouvez vous connecter ou créer un compte.
+* Pour effectuer une action autre que lire la page d'accueil, être connecté est obligatoire.
+* Vous pouvez modifier ou supprimer vos potins.
+* Il est maintenant possible de liker des gossips.
+* Si l'auteur du gossip que vous avez liké est un malotru, vous pouvez aussi le déliker.
+* Vous pouvez également commenter les gossips.
+* Vous pouvez aussi modifier ou supprimer vos commentaires.
+
 ### 11-05-2021 - V.0.3
 
-* Changement des routes manuelles vers des expressions `resources`
-* Changement de domiciliation de la page d'accueil de `localhost:3000` vers `localhost:3000/gossip`
+* Changement des routes manuelles vers des expressions `resources`.
+* Changement de domiciliation de la page d'accueil de `localhost:3000` vers `localhost:3000/gossip`.
 * Correction du bug de la page `welcome/<first_name>`.
-Elle peut maintenant afficher n'importe quel prénom passé en url
+Elle peut maintenant afficher n'importe quel prénom passé en url.
 * La gem `Turbolinks` a été retirée, elle générait des bugs.
 * Mise en place de la possibilité de créer un gossip. 
-
