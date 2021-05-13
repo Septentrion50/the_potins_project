@@ -12,7 +12,7 @@ class GossipsController < ApplicationController
 
   def create
     @gossip = Gossip.new(
-      user: User.find_by(first_name: 'Anonymous'),
+      user: current_user,
       title: params[:title],
       content: params[:content]
     )
