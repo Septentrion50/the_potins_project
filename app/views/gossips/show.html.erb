@@ -62,21 +62,38 @@
     <%#Affichage des commentaires%>
     <div class="container-fluid">
       <h2 class="mt-4">Commentaires</h2>
-      <div class="list-group">
+      <div class="list-group list-group-flush">
         <%@gossip.comments.each do |c|%>
           <div class="row list-group-item">
             <% u = c.user %>
             <strong class="text-muted"><%="#{u.first_name} #{u.last_name}"%></strong>
-            <p class="text-center"><%=c.content%></p>
+            <p ><%=c.content%></p>
             <%if object_creator?(c)%>
               <div class="container text-end mb-3" style="width: 100%;">
                 <%=link_to 'Modifier', edit_gossip_comment_path(@gossip.id, c.id), class: 'btn btn-secondary flex-end'%>
               </div>
             <%end%>
+
+            <div class="container-fluid text-end">
+              <div class="list-group" style="width: 25rem;">
+                <%c.comments.each do |cc|%>
+                  <div class="row list-group-item">
+                    <% uu = cc.user %>
+                    <strong class="text-muted"><%="#{uu.first_name} #{uu.last_name}"%></strong>
+                    <p><%=cc.content%></p>
+                    <%if object_creator?(cc)%>
+                      <div class="container mb-3" style="width: 100%;">
+                        <%=link_to 'Modifier', edit_gossip_comment_comment_path(@gossip.id, c.id, cc.id), class: 'btn btn-secondary flex-end'%>
+                      </div>
+                    <%end%>
+                  </div>
+                <%end%>
+              </div>
+            </div>
+
           </div>
         <%end%>
       </div>
     </div>
-
   </div>
 </div>

@@ -5,7 +5,7 @@ module SessionsHelper
 
   def authenticate_user
     unless current_user
-      redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
+       redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
     end
   end
 
