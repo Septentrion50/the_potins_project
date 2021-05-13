@@ -29,9 +29,12 @@
                S'inscrire / Se connecter 
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><%= link_to "S'inscrire", new_user_path, class: "dropdown-item"%></li>
-                <li><%= link_to "Se connecter", new_session_path, class: "dropdown-item"%></li>
-                <li><%= button_to "Déconnexion", session_path(:id), method: 'delete', class: "dropdown-item"%></li>
+                <% if logged_in?%>
+                  <li><%= button_to "Déconnexion", session_path(:id), method: 'delete', class: "dropdown-item"%></li>
+                <%else%>
+                  <li><%= link_to "S'inscrire", new_user_path, class: "dropdown-item"%></li>
+                  <li><%= link_to "Se connecter", new_session_path, class: "dropdown-item"%></li>
+                <%end%>
               </ul>
             </li>
           <ul>
