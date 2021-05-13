@@ -1,10 +1,14 @@
 class CommentsController < ApplicationController
+
+  before_action :authenticate_user, only: [:create]
+  before_action :creator?, only: [:edit, :update, :destroy]
+
   def show
   end
 
   def create
     @comment = Comment.new(
-      user: User.find_by(first_name: 'Anonymous'),
+      user: current_user,
       content: params[:content],
       comment_type_type: "Gossip",
       comment_type_id: params[:gossip_id]
@@ -18,11 +22,11 @@ class CommentsController < ApplicationController
 
   def edit
     @id = params[:gossip_id]
-    @comment = Comment.find(params[:id])
+    @comment = comment_find
   end
 
   def update
-    @comment = Comment.find(params[:id])
+    @comment = comment_find
     if @comment.update(content: params[:content])
       redirect_to gossip_path(@comment.comment_type_id), alert: 'Commentaire modifié !'
     else
@@ -31,9 +35,27 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = comment_find
     if @comment.destroy
       redirect_to gossip_path(@comment.comment_type_id), alert: 'Le commentaire à été supprimé !'
+    end
+  end
+
+  private
+
+  def comment_find
+    Comment.find(params[:id])
+  end
+
+  def creator?
+    unless comment_find.user == current_user
+      redirect_to gossip_path(comment_find.comment_type_id), alert: "Ce n'est pas votre commentaire !"
+    end
+  end
+
+  def authenticate_user
+    unless current_user
+      redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
     end
   end
 end

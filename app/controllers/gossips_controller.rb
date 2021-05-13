@@ -1,4 +1,8 @@
 class GossipsController < ApplicationController
+
+  before_action :authenticate_user, only: [:new, :create, :show]
+  before_action :creator?, only: [:edit, :update, :destroy]
+
   def index
   end
 
@@ -53,8 +57,20 @@ class GossipsController < ApplicationController
 
   private
 
+  def authenticate_user
+    unless current_user
+      redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
+    end
+  end
+
   def gossip_find
     gossip = Gossip.find(params[:id])
+  end
+
+  def creator?
+    unless gossip_find.user == current_user
+      redirect_to gossip_path(gossip_find.id), alert: "Ce n'est pas votre potin !"
+    end
   end
 
   def post_params

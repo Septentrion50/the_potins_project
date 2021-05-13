@@ -28,10 +28,12 @@
       </figcaption>
     </figure>
 
-    <div class="d-flex">
-      <button class="btn btn-warning" style="margin-right: 1rem;"><%=link_to 'Modifier', { controller: 'gossips', action: 'edit', id: @gossip.id }, class: 'text-dark text-decoration-none'%></button>
-      <%= button_to "Supprimer", @gossip, :method => :delete, class: "btn btn-danger", data: { confirm: "êtes-vous sûr?" } %>
-    </div>
+    <% if object_creator?(@gossip)%>
+      <div class="d-flex">
+        <button class="btn btn-warning" style="margin-right: 1rem;"><%=link_to 'Modifier', { controller: 'gossips', action: 'edit', id: @gossip.id }, class: 'text-dark text-decoration-none'%></button>
+        <%= button_to "Supprimer", @gossip, :method => :delete, class: "btn btn-danger", data: { confirm: "êtes-vous sûr?" } %>
+      </div>
+    <%end%>
 
     <%#Formulaire de commentaire%>
     <div class="container-fluid text-end mt-4">
@@ -55,9 +57,11 @@
             <% u = c.user %>
             <strong class="text-muted"><%="#{u.first_name} #{u.last_name}"%></strong>
             <p class="text-center"><%=c.content%></p>
-            <div class="container text-end mb-3" style="width: 100%;">
-              <%=link_to 'Modifier', edit_gossip_comment_path(@gossip.id, c.id), class: 'btn btn-secondary flex-end'%>
-            </div>
+            <%if object_creator?(c)%>
+              <div class="container text-end mb-3" style="width: 100%;">
+                <%=link_to 'Modifier', edit_gossip_comment_path(@gossip.id, c.id), class: 'btn btn-secondary flex-end'%>
+              </div>
+            <%end%>
           </div>
         <%end%>
       </div>

@@ -7,6 +7,12 @@ module SessionsHelper
     session[:id] = user.id
   end
 
+  def object_creator?(content)
+    return true if content.user == current_user
+
+    false
+  end
+
   def logged_in?
     return true unless session[:id].nil?
 
