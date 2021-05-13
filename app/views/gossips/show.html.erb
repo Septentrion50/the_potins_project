@@ -33,7 +33,18 @@
         <button class="btn btn-warning" style="margin-right: 1rem;"><%=link_to 'Modifier', { controller: 'gossips', action: 'edit', id: @gossip.id }, class: 'text-dark text-decoration-none'%></button>
         <%= button_to "Supprimer", @gossip, :method => :delete, class: "btn btn-danger", data: { confirm: "êtes-vous sûr?" } %>
       </div>
+    <%else%>
+      <%if liked?(@gossip)%>
+        <%=button_to "Je n'aime plus", like_path(@gossip.id), params: { id: @gossip.id, type: "Gossip" }, method: 'delete', class: 'btn btn-danger'%>
+      <%else%>
+        <%=button_to 'Liker', likes_path, params: { id: @gossip.id, type: "Gossip" }, method: 'post', class: 'btn btn-warning'%>
+      <%end%>
     <%end%>
+
+    <div class="container mt-4 text-end">
+      <small class="text-muted">Likes</small>
+      <span class="badge bg-warning rounded-pill"><%=@gossip.likes.size%></span>
+    </div>
 
     <%#Formulaire de commentaire%>
     <div class="container-fluid text-end mt-4">

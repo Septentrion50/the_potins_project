@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
 
   resources :gossips do
+    resources :likes, only: [:create, :destroy]
     resources :comments, except: [:index, :new] do
-      resources :comments, except: [:index, :new]
+      resources :likes, only: [:create, :destroy]
+      resources :comments, except: [:index, :new] do
+        resources :likes, only: [:create, :destroy]
+      end
     end
   end
 

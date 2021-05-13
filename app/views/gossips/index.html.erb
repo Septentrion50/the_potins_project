@@ -24,11 +24,11 @@
         <div class="card-body">
           <div class="container text-end">
             <h3 class="card-title text-start"><%=g.title%></h3>
+            <h5 class="card-text text-muted text-start"><%=g.user.first_name%> <%=g.user.last_name%></h5>
             <small class="text-muted">Comms</small>
             <span class="badge bg-primary rounded-pill"><%=g.comments.size%></span>
           </div>
-          <div class="container text-end">
-            <h5 class="card-text text-muted text-start"><%=g.user.first_name%> <%=g.user.last_name%></h5>
+          <div class="container text-end mt-3">
             <small class="text-muted">Likes</small>
             <span class="badge bg-warning rounded-pill"><%=g.likes.size%></span>
           </div>
@@ -36,7 +36,13 @@
             <div style="margin-right: 1rem;">
               <%=link_to 'Voir', gossip_path(g.id), class: "btn btn-primary"%>
             </div>
-            <%=button_to 'Liker', likes_path, params: { id: g.id, type: "Gossip" }, method: 'post', class: 'btn btn-warning'%>
+            <%if !object_creator?(g)%>
+              <%if liked?(g)%>
+                <%=button_to "Je n'aime plus", like_path(g.id), params: { id: g.id, type: "Gossip" }, method: 'delete', class: 'btn btn-danger'%>
+              <%else%>
+                <%=button_to 'Liker', likes_path, params: { id: g.id, type: "Gossip" }, method: 'post', class: 'btn btn-warning'%>
+              <%end%>
+            <%end%>
           </div>
         </div>
       </div>

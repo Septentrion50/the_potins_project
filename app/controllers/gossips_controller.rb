@@ -57,12 +57,6 @@ class GossipsController < ApplicationController
 
   private
 
-  def authenticate_user
-    unless current_user
-      redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
-    end
-  end
-
   def gossip_find
     gossip = Gossip.find(params[:id])
   end

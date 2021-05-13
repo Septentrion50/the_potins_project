@@ -52,10 +52,4 @@ class CommentsController < ApplicationController
       redirect_to gossip_path(comment_find.comment_type_id), alert: "Ce n'est pas votre commentaire !"
     end
   end
-
-  def authenticate_user
-    unless current_user
-      redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
-    end
-  end
 end

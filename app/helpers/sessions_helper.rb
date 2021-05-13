@@ -3,6 +3,13 @@ module SessionsHelper
     User.find_by(id: session[:id])
   end
 
+  def authenticate_user
+    unless current_user
+      redirect_to new_session_path, alert: 'Vous devez être connecté pour faire cela !'
+    end
+  end
+
+
   def log_in(user)
     session[:id] = user.id
   end
