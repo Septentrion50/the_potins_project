@@ -32,6 +32,7 @@ PrivateMessage.destroy_all
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
+    password: Faker::Internet.password,
     description: Faker::Lorem.paragraph_by_chars(number: rand(100..180)),
     age: Faker::Number.number(digits: 2),
     city: City.all.sample
@@ -42,6 +43,7 @@ User.create(
   first_name: 'Anonymous',
   last_name: 'Von Rien du Tout',
   email: Faker::Internet.email,
+  password: 'anonym',
   description: Faker::Lorem.paragraph_by_chars(number: rand(100..180)),
   age: 0,
   city: City.first

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :sessions, only: [:new, :create, :destroy]
   resources :welcome, only: [:show]
-  resources :user, only: [:show]
+  resources :user, only: [:show, :create, :new]
   resources :city, only: [:show]
 
   resources :gossips do

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container-fluid mt-5">
+    <h1>Inscription</h1>
+    <div class="container">
+      <%=form_tag(user_index_path, method: 'post') do%>
+        <div class="form-group mt-3">
+          <label class="h4">Prénom</label>
+          <%=text_field_tag 'first_name', '', required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+          <label class="h4">Nom</label>
+          <%=text_field_tag 'last_name', '', required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+          <label class="h4">Email</label>
+          <%=text_field_tag 'email', '', required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+          <label class="h4">Mot de passe</label>
+          <%=text_field_tag 'password', '', required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+          <label class="h4">Description</label>
+          <%=text_area_tag 'description', '', required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+          <label class="h4">Age</label>
+          <%=text_field_tag 'age', '', required: true, class: 'form-control'%>
+        </div>
+        <div class="form-group mt-3">
+          <label class="h4">Ville</label>
+          <%=text_field_tag 'city', '', required: true, class: 'form-control'%>
+        </div>
+        <%=submit_tag "S'inscrire", class: 'btn btn-primary mt-3'%>
+      <%end%>
+    </div>
+  </div>
+</div>
