@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :welcome, only: [:show]
   resources :user, only: [:show, :create, :new]
   resources :city, only: [:show]
+  resources :likes, only: [:create, :destroy]
 
   resources :gossips do
     resources :comments, except: [:index, :new] do

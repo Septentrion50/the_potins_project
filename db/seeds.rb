@@ -79,12 +79,7 @@ Comment.create!(
 
   Like.create!(
     user: User.all.sample,
-    gossip: Gossip.all.sample
-  )
-
-  Like.create!(
-    user: User.all.sample,
-    comment: Comment.all.sample
+    like_target: choice.sample
   )
 end
 
