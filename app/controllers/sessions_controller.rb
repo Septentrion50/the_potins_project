@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
 
-    if @user && @user.authenticate(password: params[:password])
+    if @user && @user.authenticate(params[:password])
       log_in(@user)
-      redirect_to gossips_path, success: "Bon retour parmi nous #{current_user.first_name}"
+      redirect_to gossips_path, alert: "Bon retour parmi nous #{current_user.first_name}"
     else
       flash.now[:danger] = 'Mot de passe ou email invalide'
       render :new
@@ -15,6 +15,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    p '$' * 30
+    p session[:id]
+    p '$' * 30
+    session.delete(:id)
+    redirect_to gossips_path, alert: "Bonne journée !"
   end
 end

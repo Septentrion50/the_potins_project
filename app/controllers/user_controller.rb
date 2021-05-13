@@ -19,6 +19,9 @@ class UserController < ApplicationController
     )
     if @user.save
       log_in(@user)
+      p '$' * 30
+      p session[:user_id]
+      p '$' * 30
       redirect_to gossips_path, alert: "Bienvenue sur The Gossip Project #{current_user.first_name} !"
     else
       p '$' * 30
