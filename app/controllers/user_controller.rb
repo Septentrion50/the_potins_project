@@ -19,8 +19,11 @@ class UserController < ApplicationController
     )
     if @user.save
       log_in(@user)
-      redirect_to gossips_path, success: "Bienvenue sur The Gossip Project #{current_user.first_name} !"
+      redirect_to gossips_path, alert: "Bienvenue sur The Gossip Project #{current_user.first_name} !"
     else
+      p '$' * 30
+      p @user.errors.messages
+      p '$' * 30
       flash.now[:danger] = "Votre compte n'a pas pu être créé, vérifiez que vous avez rempli tous les champs"
       render :new
     end
