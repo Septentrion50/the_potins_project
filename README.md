@@ -1,4 +1,4 @@
-# The Gossip Project
+# The Potins Project
 
 Amélioration du projet de base, la base de données est maintenant en **Postgresql**,
 et des pages statiques existent pour afficher les views de base.
