@@ -70,3 +70,6 @@ gem 'faker'
 
 # Hash passwords
 gem 'bcrypt'
+
+# jquery
+gem 'jquery-rails'
