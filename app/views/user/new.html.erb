@@ -42,6 +42,10 @@
           <label class="h4">Code postal</label>
           <%=text_field_tag 'zip_code', '', required: true, class: 'form-control'%>
         </div>
+        <div class="form-group mt-3">
+          <%=check_box_tag 'remember_user'%>
+          <label class="h5">Se rappeler de moi</label>
+        </div>
         <%=submit_tag "S'inscrire", class: 'btn btn-primary mt-3'%>
       <%end%>
     </div>

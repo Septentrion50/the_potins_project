@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       log_in(@user)
+      if params[:remember_user]
+        remember(current_user)
+      end
       redirect_to gossips_path, alert: "Bon retour parmi nous #{current_user.first_name}"
     else
       flash.now[:danger] = 'Mot de passe ou email invalide'
@@ -15,10 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    p '$' * 30
-    p session[:id]
-    p '$' * 30
-    session.delete(:id)
+    log_out(current_user)
     redirect_to gossips_path, alert: "Bonne journée !"
   end
 end
