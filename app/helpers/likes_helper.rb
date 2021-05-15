@@ -4,7 +4,7 @@ module LikesHelper
     content.likes.each do |l|
       c_likes << l.user
     end
-    return true if c_likes.any? { |u| u == User.find_by(id: session[:id]) }
+    return true if c_likes.any? { |u| u == User.find_by(id: session[:user_id]) }
 
     false
   end
