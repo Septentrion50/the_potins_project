@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  root 'gossips#index'
   resources :sessions, only: [:new, :create, :destroy]
-  resources :welcome, only: [:show]
   resources :user, only: [:show, :create, :new]
   resources :city, only: [:show]
   resources :likes, only: [:create, :destroy]
