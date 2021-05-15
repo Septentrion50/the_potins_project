@@ -35,8 +35,8 @@ module SessionsHelper
     # Stockage en base de donnees
     user.remember(remember_token)
 
-    cookies.permanent[:user_id] = { value: user.id, secure: true, same_site: :none }
-    cookies.permanent[:remember_token] = { value: remember_token, secure: true, same_site: :none }
+    cookies.permanent[:user_id] = { value: user.id, secure: true, same_site: :lax }
+    cookies.permanent[:remember_token] = { value: remember_token, secure: true, same_site: :lax }
   end
 
   def log_in(user)
