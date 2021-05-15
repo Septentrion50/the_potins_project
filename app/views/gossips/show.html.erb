@@ -11,7 +11,7 @@
     <%#Entête%>
     <h1 class="display-3 mb-3"><%=@gossip.title%></h1>
     <h5 class="mb-2">Par <%=link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}", { controller: 'user', action: 'show', id: @gossip.user.id }, class: "text-decoration-none"%></h5>
-    <p>De <%=link_to "#{@gossip.user.city.name}", { controller: 'city', action: 'show', id: @gossip.user.city.id }, class: "text-decoration-none"%></p>
+    <p>De <%=link_to "#{@gossip.user.city.name.capitalize}", { controller: 'city', action: 'show', id: @gossip.user.city.id }, class: "text-decoration-none"%></p>
 
     <%date = @gossip.created_at%>
     <p class="text-muted mb-4">Publié le <%=date.strftime('%d-%m-%Y')%></p>
