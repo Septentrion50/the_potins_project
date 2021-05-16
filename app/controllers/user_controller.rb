@@ -30,6 +30,7 @@ class UserController < ApplicationController
       end
       redirect_to gossips_path, alert: "Bienvenue sur The Gossip Project #{current_user.first_name} !"
     else
+      p @user.errors.messages
       flash.now[:danger] = "Votre compte n'a pas pu être créé, vérifiez que vous avez rempli tous les champs"
       render :new
     end
