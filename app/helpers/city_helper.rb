@@ -6,7 +6,7 @@ module CityHelper
   end
 
   def find_city(name)
-    City.find_by(name: name)
+    City.find_by(name: name.downcase)
   end
 
   def create_city(name, zip_code)
