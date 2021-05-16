@@ -26,7 +26,7 @@ class UserController < ApplicationController
     if @user.save
       log_in(@user)
       if params[:remember_user]
-        remember(current_user)
+        remember(@user)
       end
       redirect_to gossips_path, alert: "Bienvenue sur The Gossip Project #{current_user.first_name} !"
     else
